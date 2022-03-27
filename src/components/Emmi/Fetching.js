@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Axios from 'axios'
-import './Getusers.css'
+
 function Fetching() {
     const [usersList, setUsersList] = useState([]);
 
@@ -17,12 +17,13 @@ function Fetching() {
         {usersList.map((val, key) => {
           return (
             <div className="user-output">
-
-              <p><strong>Name: </strong>{val.fname}</p>
-              <p><strong>Lastname: </strong>{val.lname}</p>
-              <p><strong>Email: </strong>{val.email}</p>
-              <p><strong>Account: </strong>{val.account}</p>
-              <p><strong>Role: </strong>{val.role}</p>
+              <div>
+              <h3>Name: {val.id}</h3>
+              <h3>Lastname: {val.lname}</h3>
+              <h3>Email: {val.email}</h3>
+              <h3>Account: {val.account}</h3>
+              <h3>Role: {val.role}</h3>
+              </div>
               <div>
 
 
