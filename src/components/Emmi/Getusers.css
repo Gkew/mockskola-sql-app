@@ -1,10 +1,36 @@
 .users {
-    margin: 0 auto;
+    margin: auto;
 }
 
 .user-output {
+    margin: 0 auto;
     padding: 2%;
     display: flex;
+    flex-direction: column;
+    gap: 5%;
+    width: 100%;
+
+}
+/* .user-output {
+    width: 100%;
+    display: flex;
+    border: 2px solid pink;
     flex-direction: row;
-    justify-content: space-between;
+} */
+.Data {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    margin-bottom: 2%;
+}
+.Edits {
+display: flex;
+gap: 4%;
+height: 30px;
+}
+.updateBtn, .delBtn {
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
 }

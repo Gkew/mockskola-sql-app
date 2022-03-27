@@ -50,9 +50,14 @@ app.get("/users", (req, res) => {
 app.put("/update", (req, res) => {
   const id = req.body.id;
   const fname = req.body.fname;
+  const lname = req.body.lname;
+  const email = req.body.email;
+  const account = req.body.account;
+  const role = req.body.role;
+
   db.query(
-    "UPDATE users SET fname = ? WHERE id = ?",
-    [fname, id],
+    "UPDATE users SET fname = ?, lname = ?, email = ?, account = ?, role =?  WHERE id = ?",
+    [fname, lname, email, account, role, id],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -62,6 +67,8 @@ app.put("/update", (req, res) => {
     }
   );
 });
+
+
 
 app.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
