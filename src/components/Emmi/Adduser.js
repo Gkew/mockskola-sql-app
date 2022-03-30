@@ -2,6 +2,7 @@ import "./Adduser.css";
 import { useState } from "react";
 import Axios from "axios";
 
+
 function Adduser() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -18,7 +19,7 @@ function Adduser() {
   const [usersList, setUsersList] = useState([]);
 
   const addUser = () => {
-    Axios.post("http://localhost:3001/create", {
+    Axios.post("http://localhost:3001/createUser", {
         fname: fname,
         lname: lname,
         email: email,
@@ -42,41 +43,7 @@ function Adduser() {
       ]);
     });
   };
-  const getUser = () => {
-    Axios.get("http://localhost:3001/users").then((response) => {
-      setUsersList(response.data);
-    });
-  };
 
-// const updateUser = (id) => {
-//     Axios.put("http://localhost:3001/update", { fname: newfname, lname: newlname, email: newemail, account: newaccount, role: newrole, id: id }).then(
-//       (response) => {
-//         setUsersList(
-//           usersList.map((val) => {
-//             return val.id === id
-//               ? {
-//                   id: val.id,
-//                   fname: newfname, 
-//                   lname: newlname, 
-//                   email: newemail, 
-//                   account: newaccount, 
-//                   role: newrole,
-//                 }
-//               : val;
-//           })
-//         );
-//       }
-//     );
-//   };
-//   const deleteUser = (id) => {
-//     Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
-//       setUsersList(
-//         usersList.filter((val) => {
-//           return val.id !== id;
-//         })
-//       );
-//     });
-//   };
   return (
     <div className="Adduser">
       <div className="adding-form">
@@ -106,6 +73,7 @@ function Adduser() {
         />
         <label>Account:</label>
         <input
+        required
           type="text"
           value={account}
           onChange={(event) => {
@@ -120,17 +88,13 @@ function Adduser() {
             setRole(event.target.value);
           }}
         >
-        <option>Teacher</option>
-        <option>Admin</option>
+        <option value="teacher">Teacher</option>
+        <option value="admin">Admin</option>
         </select>
 
         <button className="addBtn" disabled={!fname || !lname || !email || !account || !role} onClick={addUser}>Add a user</button>
         </div>
-
-        <div className="users">
-
-
-      </div>
+          
     </div>
   )
 }

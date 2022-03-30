@@ -13,7 +13,7 @@ const db = mysql.createConnection({
   database: "users",
 });
 
-app.post("/create", (req, res) => {
+app.post("/createUser", (req, res) => {
   const fname = req.body.fname;
   const lname = req.body.lname;
   const email = req.body.email;
@@ -21,12 +21,28 @@ app.post("/create", (req, res) => {
   const role = req.body.role;
 
 
-
-
-
   db.query(
     "INSERT INTO users (fname, lname, email, account, role) VALUES (?,?,?,?,?)",
     [fname, lname, email, account, role],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Values Inserted");
+      }
+    }
+  );
+});
+app.post("/createCourses", (req, res) => {
+
+  const course = req.body.course;
+  const teacher = req.body.teacher;
+  const weeks = req.body.weeks;
+  const info = req.body.info;
+
+  db.query(
+    "INSERT INTO courses (course, teacher, weeks, info) VALUES (?,?,?,?)",
+    [course, teacher, weeks, info],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -46,6 +62,19 @@ app.get("/users", (req, res) => {
     }
   });
 });
+app.get("/courses", (req, res) => {
+  db.query("SELECT * FROM courses", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+
+
+
 
 app.put("/update", (req, res) => {
   const id = req.body.id;

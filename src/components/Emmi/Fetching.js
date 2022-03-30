@@ -14,7 +14,7 @@ function Fetching() {
 
         <div className="users">
         <button onClick={getUser}>Show Users</button>
-        {usersList.map((val, key) => {
+        {usersList.map((val) => {
           return (
             <div className="user-output">
               <div>

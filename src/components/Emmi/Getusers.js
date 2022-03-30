@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import Axios from 'axios'
 import './Getusers.css'
+// import Findroles from './Findroles';
 
-function Fetching() {
+function Getusers() {
   
   const [newfname, setNewfname] = useState(0);
   const [newlname, setNewlname] = useState(0);
@@ -10,13 +11,15 @@ function Fetching() {
   const [newaccount, setNewaccount] = useState(0);
   const [newrole, setNewrole] = useState(0);
 
-    const [usersList, setUsersList] = useState([]);
-    // sqlget = "SELECT `title`, `text`, `name` FROM `table` WHERE `title` = `text`";
+  const [usersList, setUsersList] = useState([]);
+
+
     const getUser = () => {
         Axios.get("http://localhost:3001/users").then((response) => {
           setUsersList(response.data);
         });
       };
+
       const updateUser = (id) => {
         Axios.put("http://localhost:3001/update", { fname: newfname, lname: newlname, email: newemail, account: newaccount, role: newrole, id: id }).then(
           (response) => {
@@ -52,36 +55,20 @@ function Fetching() {
     return (
 
         <div className="users">
+
         <button onClick={getUser}>Show Users</button>
-        {usersList.map((val) => {
+        {usersList.map((val, key) => {
           return (
             <div className="user-output">
-              <div className='Data'>
-              <p><strong>Name: </strong>{val.fname}</p>
-              <p><strong>Lastname: </strong>{val.lname}</p>
-              <p><strong>Email: </strong>{val.email}</p>
-              <p><strong>Account: </strong>{val.account}</p>
-              <p><strong>Role: </strong>{val.role}</p>
-              <button className='updateBtn'
-              onClick={() => {
-                updateUser(val.id);
-              }}
-            >
-              {" "}
-              Update
-            </button>
-          
-            <button className='delBtn'
-              onClick={() => {
-                deleteUser(val.id);
-              }}
-            >
-              Delete
-            </button>
-            </div>
+            <div className='rows'>
+        <div><b>Name:</b> <p>{val.fname}</p></div>
+        <div><b>Lastname: </b><p>{val.lname}</p></div>
+        <div><b>Email: </b><p>{val.email}</p></div>
+        <div><b>Account: </b><p>{val.account}</p></div>
+        <div className='role'><b>Role: </b><p>{val.role}</p></div>
+        </div>
 
 
-        
             <div className='Edits'>
               <input
               type="text"
@@ -122,6 +109,22 @@ function Fetching() {
     <option>Admin</option>
     </select>
 
+    <button className='updateBtn'
+    onClick={() => {
+      updateUser(val.id);
+    }}
+  >
+    {" "}
+    Update
+  </button>
+
+  <button className='delBtn'
+    onClick={() => {
+      deleteUser(val.id);
+    }}
+  >
+    Delete
+  </button>
 
   </div>
     </div>
@@ -131,10 +134,9 @@ function Fetching() {
 
 
         })}
-
       </div>
 
 
   );
 }
-export default Fetching
+export default Getusers

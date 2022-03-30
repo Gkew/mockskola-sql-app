@@ -6,7 +6,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 35%;
     padding: 2%;
     text-align: center;
 }
@@ -28,4 +28,12 @@
 }
 .addBtn:hover {
     background-color: rgb(130, 130, 248);
+}
+input:invalid {
+    animation: shake 300ms;
+}
+@keyframes shake {
+    25% { transform: transtaleX(4px); }
+    50% { transform: transtaleX(-4px); }
+    75% { transform: transtaleX(4px); }
 }

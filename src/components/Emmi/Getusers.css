@@ -8,29 +8,33 @@
     display: flex;
     flex-direction: column;
     gap: 5%;
-    width: 100%;
-
+    width: 90%;
 }
-/* .user-output {
-    width: 100%;
-    display: flex;
-    border: 2px solid pink;
-    flex-direction: row;
-} */
+
 .Data {
     width: 90%;
     display: flex;
     flex-direction: row;
-    gap: 5%;
+    gap: 6%;
     margin-bottom: 2%;
 }
 .Edits {
 display: flex;
-gap: 4%;
+justify-content: start;
+gap: 3%;
 height: 30px;
 }
+
 .updateBtn, .delBtn {
-    margin-top: 20px;
     width: 100px;
     height: 30px;
+}
+.rows {
+    font-weight: 400;
+    display: flex;
+    gap: 10%;
+    margin-left: 2%;
+}
+.role{
+    margin-left: 4%;
 }

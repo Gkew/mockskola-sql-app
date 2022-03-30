@@ -1,0 +1,22 @@
+.footer{
+    justify-content: space-around;
+      margin-top: 1rem;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-top: 0.5px solid black;
+      animation: footer 2000ms ease;
+}
+
+@keyframes footer {
+	0% {
+		opacity: 0;
+		transform: translateX(-500px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}

@@ -1,0 +1,10 @@
+.not-found {
+    height: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    /* background: url('../img/pngegg.png') */
+}
+a {
+    text-decoration: none;
+    color: black;
+}
