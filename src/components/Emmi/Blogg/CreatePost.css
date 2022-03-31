@@ -1,40 +1,37 @@
-.adding-form {
+.create-content form {
     margin: 40px auto;
     display: flex;
     flex-direction: column;
     width: 35%;
+    gap: 20px;
     padding: 2%;
-    text-align: center;
-
     background: linear-gradient(135DEG, RGBA(255,255,255,0.1), RGBA (255,255,255,0));
     backdrop-filter: BLUR(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     border: 0.5px solid RGBA(255,255,255,0.18);
     box-shadow: 0 8px 32px 0 RGBA(0,0,0,0.37);
-
 }
-.adding-form input, select {
-  margin-bottom: 2%;
-  border: none;
-  border-bottom: 1px solid gray;
-  font-size: 18px;
-  height: 30px;
-  text-align: center;
-}
-.addBtn {
-    background-color: rgb(84, 84, 245);
+.create-content label {
     color: white;
-    margin-top: 2%;
-    width: 100%;
+    margin: auto;
+}
+.create-content input{
+    font-size: 18px;
+    height: 30px;
+    text-align: center;
+}
+.create-content textarea{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-rendering: auto;
     font-size: 16px;
-    height: 35px;
-    border-radius: 25px;
-
 }
-.addBtn:hover {
-    background-color: rgb(105, 105, 249);
+.create-content button{
+    height: 30px;
+    font-size: 18px;
 }
-.adding-form label {
-    color: white;
+.Title {
+    margin: 0 auto;
+    color: White;
 }

@@ -1,9 +1,11 @@
-.Homepage {
+.App {
   margin: 0 auto;
   text-align: center;
+  color: white;
 }
 
 .crew {
+  margin: auto;
 display: flex;
 width: 100%;
 flex-direction: row;
