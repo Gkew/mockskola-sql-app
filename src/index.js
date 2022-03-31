@@ -6,7 +6,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer';
 import Adduser from './components/Emmi/Adduser'
 import Getusers from './components/Emmi/Getusers'
-import Courses from './components/Emmi/Courses';
+import Courses from './components/Axel/Courses';
 import Enroll from './components/Emmi/Enroll';
 import PageNotFound from './components/Emmi/PageNotFound';
 
