@@ -1,13 +1,22 @@
 .footer{
     justify-content: space-around;
-      margin-top: 1rem;
-      padding: 1rem;
+    display: flex;
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      border-top: 0.5px solid black;
+      flex-shrink: 0;
+      background-color: black;
+      color: whitesmoke;
+      border-top: 0.5px solid white;
       animation: footer 2000ms ease;
+      text-align: left;
+}
+.box1, .box2, .box3 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-top: 1%;
 }
 
 @keyframes footer {

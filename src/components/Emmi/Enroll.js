@@ -1,101 +1,82 @@
-import React from 'react'
+import emailjs from "emailjs-com";
+import React, {useState} from 'react';
 import './Enroll.css'
-import { Link } from 'react-router-dom'
+import Axios from "axios";
+import coursesList from '../Axel/Courses'
 
-function Enroll() {
+export default function Apply() {
+  const [studentFname, setstudentFname] = useState("");
+  const [studentLname, setstudentLname] = useState("");
+  const [studentEmail, setstudentEmail] = useState("");
+  const [studentCourse, setstudentCourse] = useState("");
+  const [studentsList, setstudentsList] = useState([])
 
-  return (
-    <div className='main-content'>
+  const [coursesList, setCoursesList] = useState([]);
 
-    <div className='box1'> <h2>Kurs 1</h2>
-    <div className='title'><h3>Title</h3></div>
-    <div className='info'>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-    optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-    obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-    nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-    tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-    quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
-    sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-    recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
-    minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
-    quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
-    fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
-    consequuntur! Commodi minima excepturi repudiandae velit hic maxime
-    doloremque. Quaerat provident commodi consectetur veniam similique ad 
-    earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
-    fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
-    suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
-    modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
-    totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
-    quasi aliquam eligendi, placeat qui corporis!</p>
-    </div>
-    <div className='apply'>
-    <button> <Link to="/course1">Apply</Link></button></div>
-    </div>
-    
-    <div className='box2'><h2>Kurs 2</h2>
-    <div className='title'><h3>Title</h3></div>
-    <div className='info'>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-    optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-    obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-    nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-    tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-    quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
-    sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-    recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
-    minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
-    quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
-    fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
-    consequuntur! Commodi minima excepturi repudiandae velit hic maxime
-    doloremque. Quaerat provident commodi consectetur veniam similique ad 
-    earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
-    fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
-    suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
-    modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
-    totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
-    quasi aliquam eligendi, placeat qui corporis!</p>
-    </div>
-    <div className='apply'>
-    <button> <Link to="/course2">Apply</Link></button></div>
-    </div>
 
-    <div className='box3'><h2>Kurs 3</h2>
-    <div className='title'><h3>Title</h3></div>
-    <div className='info'>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-    molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-    numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-    optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-    obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-    nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-    tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-    quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
-    sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-    recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
-    minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
-    quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
-    fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
-    consequuntur! Commodi minima excepturi repudiandae velit hic maxime
-    doloremque. Quaerat provident commodi consectetur veniam similique ad 
-    earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
-    fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
-    suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
-    modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
-    totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
-    quasi aliquam eligendi, placeat qui corporis!</p>
-    </div>
-    <div className='apply'>
+    function Apply(e) {
+        e.preventDefault();
 
-    <button> <Link to="/course3">Apply</Link></button></div>
-      </div>
-    </div>
-  )
+    emailjs.sendForm('service_13w52j2', 'template_spaceforce', e.target, "xSvyElvuHBArxnFko")
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+        e.target.reset()
+    }
+ const addStudent = () => {
+    Axios.post("http://localhost:3001/createStudent", {
+        studentFname: studentFname,
+        studentLname: studentLname,
+        studentEmail: studentEmail,
+       studentCourse: studentCourse,
+    }).then(() => {
+      setstudentsList([
+        ...studentsList,
+
+        {
+          studentFname: studentFname,
+          studentLname: studentLname,
+          studentEmail: studentEmail,
+         studentCourse: studentCourse,
+        },
+      ]);
+    });
+  };
+  const getCourses = () => {
+    Axios.get("http://localhost:3001/courses").then((response) => {
+      setCoursesList(response.data);
+    });
+  };
+
+    return(
+
+            <div className="container">
+            <form onSubmit={Apply}>
+                            <input type="text" placeholder="Subject.." name="subject"/>
+
+                            <input type="text" placeholder="Firstname" name="fname" onChange={(event) => {
+                              setstudentFname(event.target.value);
+                            }}/>
+
+                            <input type="text" placeholder="Lastname" name="lname" onChange={(event) => {
+                              setstudentLname(event.target.value);
+                            }}/>
+                            <input type="email" placeholder="Email Address" name="email" onChange={(event) => {
+                              setstudentEmail(event.target.value);
+                            }}/>
+
+                            <select type="text" placeholder="Programs" name="course" onClick={getCourses} onChange={(event) => {
+                              setstudentCourse(event.target.value);
+                            }}>  {coursesList.map((val) =>{ return( <option >{val.course}</option> )})}
+
+                            </select>
+
+                            <input type="submit" value="Send Message" onClick={addStudent}/>
+
+                </form>
+
+        </div>
+    )
 }
-
-export default Enroll

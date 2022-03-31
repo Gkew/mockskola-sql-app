@@ -33,6 +33,36 @@ app.post("/createUser", (req, res) => {
     }
   );
 });
+app.post("/createStudent", (req, res) => {
+  const studentFname = req.body.studentFname;
+  const studentLname = req.body.studentLname;
+  const studentEmail = req.body.studentEmail;
+  const studentCourse = req.body.studentCourse;
+
+
+  db.query(
+    "INSERT INTO students (studentFname, studentLname, studentEmail, studentCourse) VALUES (?,?,?,?)",
+    [studentFname, studentLname, studentEmail, studentCourse],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Values Inserted");
+      }
+    }
+  );
+});
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//AXEL
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 app.post("/createCourses", (req, res) => {
 
   const course = req.body.course;

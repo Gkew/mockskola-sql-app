@@ -3,7 +3,7 @@ import { useState } from "react";
 import Axios from "axios";
 
 
-function Adduser() {
+const Adduser = () => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
