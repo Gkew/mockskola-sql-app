@@ -12,11 +12,12 @@ function Courses () {
   const [info, setInfo] = useState("");
   const [teacher, setTeacher] = useState("");
   const [coursesList, setCoursesList] = useState([]);
-
-
+  const [usersList, setUsersList] = useState([]);
+  
   const addCourse = () => {
     Axios.post("http://localhost:3001/createCourses", {
     course: course,
+    teacher: teacher,
     weeks: weeks,
     info: info,
     }).then(() => {
@@ -34,11 +35,15 @@ function Courses () {
   };
 
   const getCourses = () => {
-    Axios.get("http://localhost:3001/users").then((response) => {
+    Axios.get("http://localhost:3001/courses").then((response) => {
       setCoursesList(response.data);
     });
   };
-
+  const getUsers = () => {
+    Axios.get("http://localhost:3001/users").then((response) => {
+      setUsersList(response.data);
+    });
+  };
 
   return (
     <div className="Courses">
@@ -79,9 +84,12 @@ function Courses () {
             setInfo(event.target.value);
           }}
         />
-        <select onClick={(e) => setTeacher(e.target.value)}>
-        {coursesList.map(x => { return( <option >{x.fname}</option> )})}
-        </select>
+        
+        <select type="text" onClick={getUsers} onChange={(event) => {
+                              setTeacher(event.target.value);
+                            }}>  {usersList.map((val) =>{ return( <option >Name; {val.fname}Role; {val.role}</option> )})}
+
+       </select>
 
         <button onClick={addCourse}>Add Course</button>
       </div>
@@ -94,7 +102,7 @@ function Courses () {
             <div className="course">
 
               <div className="data">
-              <h3>Teacher: <p>{val.fname} {val.role}</p></h3>
+              <h3>Teacher: <p>{val.teacher} </p></h3>
                 <h3>Course: <p>{val.course}</p></h3>
                 <h3>Weeks: <p>{val.weeks}</p></h3>
                 <h3>Description: <p>{val.info}</p></h3>
