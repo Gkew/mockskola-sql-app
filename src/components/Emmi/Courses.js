@@ -79,7 +79,7 @@ function Courses () {
             setInfo(event.target.value);
           }}
         />
-        <select onChange={(e) => setTeacher(e.target.value)}>
+        <select onClick={(e) => setTeacher(e.target.value)}>
         {coursesList.map(x => { return( <option >{x.fname}</option> )})}
         </select>
 
