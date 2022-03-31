@@ -1,18 +1,12 @@
-.main-content {
-    margin: 0 auto;
-    min-height: 110vh;
+.container form {
+    margin: 20px auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    gap: 2%;
+    gap: 20px;
+    width: 50%;
 }
-.box1, .box2, .box3 {
-    min-height: 20%;
-    gap: 2%;
-    align-items: center;
-    width: 30%;
-justify-content: space-between;
-}
-button a {
-    color: white;
+.container input {
+    text-align: center;
+    height: 30px;
 }
