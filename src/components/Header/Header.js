@@ -6,11 +6,13 @@ function Header() {
   return (
     <div className="header">
       <Link to="/">Home</Link>
-        <Link to="/adduser">Add Users</Link>
-        <Link to="/getusers">Users</Link>
-        <Link to="/findroles">Find Roles</Link>
-        <Link to="/courses">Courses</Link>
-        <Link to="/enroll">Enroll</Link>
+      <Link to="/adduser">Add Users</Link>
+      <Link to="/getusers">Find Users</Link>
+   
+      <Link to="/courses">Courses</Link>
+      <Link to="/findroles">Academics</Link>
+      <Link to="/enroll">Apply to Spaceforce</Link>
+      <Link to="/blog">Blogg</Link>
     </div>
   );
 }

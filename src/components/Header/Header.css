@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    background: url('../Header/moon-and-earth-header.jpg');
+    /* background: url('../Header/img/moon-and-earth-header.jpg'); */
     background-position: center;
     background-repeat: no-repeat;
     height: 20vh;
@@ -12,7 +12,7 @@
     align-items: flex-end;
     gap: 5%;
     width: 100%;
-    border-bottom: 2px solid black;
+    border-bottom: 0.1px ridge white;
     animation: header 2000ms ease;
 }
 

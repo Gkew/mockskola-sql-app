@@ -1,12 +1,42 @@
 .container form {
-    margin: 20px auto;
+    margin: 40px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
-    width: 50%;
+    padding: 2%;
+    width: 35%;
+    margin-bottom: 2%;
+    font-size: 16px;
+    color: white;
+    
+    background: linear-gradient(135DEG, RGBA(255,255,255,0.1), RGBA (255,255,255,0));
+    backdrop-filter: BLUR(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 0.5px solid RGBA(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 RGBA(0,0,0,0.37);
 }
-.container input {
+.container input, select {
     text-align: center;
     height: 30px;
+    margin-bottom: 2%;
+}
+
+.container label {
+    margin: auto;
+}
+
+.container button {
+    margin: auto;
+    height: 35px;
+    margin-top: 2%;
+    font-size: 16px;
+    width: 100%;
+    color: white;
+    background-color: rgb(84, 84, 245);
+    border-radius: 25px;
+}
+.container button:hover {
+    background-color: rgb(105, 105, 249);
+
 }

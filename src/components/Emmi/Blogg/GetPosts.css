@@ -1,0 +1,56 @@
+.Posts {
+    min-height: 110vh;
+    margin: 0 auto;
+}
+.Blog-posts {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+.Postbox {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    text-align: left;
+    border: 1px solid black;
+    color: white;
+    background: linear-gradient(135DEG, RGBA(255,255,255,0.1), RGBA (255,255,255,0));
+    backdrop-filter: BLUR(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 0.5px solid RGBA(255,255,255,0.18);
+    box-shadow: 0 8px 32px 0 RGBA(0,0,0,0.37);
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 2%;
+    width: 30%;
+
+}
+.title, .tags {
+    text-align: left;
+}
+.blog-post {
+    width: 60%;
+    align-self: center;
+}
+
+.Posts button {
+margin: 0 auto;
+height: 35px;
+width: 30%;
+border-radius: 25px;
+}
+
+button.get-posts {
+    margin: 0 auto;
+    width: 20%;
+    justify-content: center;
+    align-self: center;
+}

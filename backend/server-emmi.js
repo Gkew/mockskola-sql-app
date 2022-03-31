@@ -52,27 +52,16 @@ app.post("/createStudent", (req, res) => {
     }
   );
 });
+app.post("/createPost", (req, res) => {
+  const title = req.body.title;
+  const publisher = req.body.publisher;
+  const post = req.body.post;
+  const tags = req.body.tags;
 
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-//AXEL
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-app.post("/createCourses", (req, res) => {
-
-  const course = req.body.course;
-  const teacher = req.body.teacher;
-  const weeks = req.body.weeks;
-  const info = req.body.info;
 
   db.query(
-    "INSERT INTO courses (course, teacher, weeks, info) VALUES (?,?,?,?)",
-    [course, teacher, weeks, info],
+    "INSERT INTO posts (title, publisher,  post, tags) VALUES (?,?,?,?)",
+    [title, publisher, post, tags],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -82,7 +71,6 @@ app.post("/createCourses", (req, res) => {
     }
   );
 });
-
 app.get("/users", (req, res) => {
   db.query("SELECT * FROM users", (err, result) => {
     if (err) {
@@ -92,8 +80,9 @@ app.get("/users", (req, res) => {
     }
   });
 });
-app.get("/courses", (req, res) => {
-  db.query("SELECT * FROM courses", (err, result) => {
+
+app.get("/posts", (req, res) => {
+  db.query("SELECT * FROM posts", (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -102,8 +91,16 @@ app.get("/courses", (req, res) => {
   });
 });
 
-
-
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM posts WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
 
 app.put("/update", (req, res) => {
@@ -139,6 +136,50 @@ app.delete("/delete/:id", (req, res) => {
     }
   });
 });
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//AXEL
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.post("/createCourses", (req, res) => {
+
+  const course = req.body.course;
+  const teacher = req.body.teacher;
+  const weeks = req.body.weeks;
+  const info = req.body.info;
+
+  db.query(
+    "INSERT INTO courses (course, teacher, weeks, info) VALUES (?,?,?,?)",
+    [course, teacher, weeks, info],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Values Inserted");
+      }
+    }
+  );
+});
+
+
+app.get("/courses", (req, res) => {
+  db.query("SELECT * FROM courses", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+
+
+
+
 
 app.listen(3001, () => {
   console.log("Server is running on port 3001");

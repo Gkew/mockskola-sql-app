@@ -2,9 +2,9 @@
     height: fit-content;
     margin: 0 auto;
     text-align: center;
-    /* background: url('../img/pngegg.png') */
+color: white;
 }
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
