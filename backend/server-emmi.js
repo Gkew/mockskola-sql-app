@@ -177,6 +177,41 @@ app.get("/courses", (req, res) => {
 });
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//MARKUS
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.post("/createPrograms", (req, res) => {
+
+  const program = req.body.program;
+  const description = req.body.description;
+  const courses = req.body.courses;
+  const admin = req.body.admin;
+
+  db.query(
+    "INSERT INTO programs (program, description, courses, admin) VALUES (?,?,?,?)",
+    [program, description, courses, admin],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Values Inserted");
+      }
+    }
+  );
+});
+
+
+app.get("/programs", (req, res) => {
+  db.query("SELECT * FROM programs", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 
 
 
