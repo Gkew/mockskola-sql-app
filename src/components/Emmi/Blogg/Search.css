@@ -1,0 +1,11 @@
+.Search {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+flex-direction: column;
+width: 35%;
+}
+.Filtered-tags {
+    margin: 0 auto;
+    color: white;
+}
