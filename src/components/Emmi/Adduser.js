@@ -19,9 +19,7 @@ const Adduser = () => {
   const [usersList, setUsersList] = useState([]);
 
   const addUser = () => {
-    if(fname.length === 0) {
-      <p>Error</p>
-    }
+
     Axios.post("http://localhost:3001/createUser", {
         fname: fname,
         lname: lname,
@@ -95,7 +93,7 @@ const Adduser = () => {
         <option value="admin">Admin</option>
         </select>
 
-        <button className="addBtn" disabled={ !lname || !email || !account || !role} onClick={addUser}>Add a user</button>
+        <button className="addBtn" disabled={ !lname || !email || !account || !role}  onClick={addUser}>Add a user</button>
         </div>
           
     </div>
