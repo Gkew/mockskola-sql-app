@@ -19,7 +19,7 @@ app.post("/createUser", (req, res) => {
   const email = req.body.email;
   const account = req.body.account;
   const role = req.body.role;
-
+  
 
   db.query(
     "INSERT INTO users (fname, lname, email, account, role) VALUES (?,?,?,?,?)",
@@ -80,6 +80,9 @@ app.get("/users", (req, res) => {
     }
   });
 });
+
+
+
 
 app.get("/posts", (req, res) => {
   db.query("SELECT * FROM posts", (err, result) => {

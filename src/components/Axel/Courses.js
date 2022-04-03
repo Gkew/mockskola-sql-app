@@ -6,7 +6,7 @@ import Axios from "axios";
 
 
 function Courses () {
-
+  
   const [course, setCourse] = useState("");
   const [weeks, setWeeks] = useState(0);
   const [info, setInfo] = useState("");
@@ -42,6 +42,7 @@ function Courses () {
   const getUsers = () => {
     Axios.get("http://localhost:3001/users").then((response) => {
       setUsersList(response.data);
+      console.log(response.data)
     });
   };
 
@@ -74,35 +75,45 @@ function Courses () {
         <option value="7">7</option>
         <option value="8">8</option>
         <option value="9">9</option>
-        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
         </select>
-
+          
         <label>Description:</label>
-        <textarea
+        <textarea maxLength="500" rows="12" cols="41" required
           type="text"
           onChange={(event) => {
             setInfo(event.target.value);
           }}
         />
-        
-        <select type="text" onClick={getUsers} onChange={(event) => {
+        <label>Teacher:</label>
+        <select type="text" onClick={getUsers}className="selectteacher" onChange={(event) => {
                               setTeacher(event.target.value);
-                            }}>  {usersList.map((val) =>{ return( <option >Name; {val.fname}Role; {val.role}</option> )})}
+                             
+                            }}>  {usersList.map((val) =>{ return( <option >  {val.fname} {val.lname}
+
+                            
+                            </option> )})}
+                            
 
        </select>
 
-        <button onClick={addCourse}>Add Course</button>
+        <button onClick={addCourse}className="knapp" >Add Course</button>
       </div>
       <div className="courses">
 
-        <button onClick={getCourses}>Show Courses</button>
+        <button onClick={getCourses}className="show" >Show Courses</button>
 
         {coursesList.map((val, key) => {
           return (
             <div className="course">
 
               <div className="data">
-              <h3>Teacher: <p>{val.teacher} </p></h3>
+                <h3>Teacher: <p>{val.teacher} </p></h3>
                 <h3>Course: <p>{val.course}</p></h3>
                 <h3>Weeks: <p>{val.weeks}</p></h3>
                 <h3>Description: <p>{val.info}</p></h3>
