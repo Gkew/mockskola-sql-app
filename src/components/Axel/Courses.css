@@ -1,3 +1,10 @@
+.Courses {
+    Color: white;
+      gap: 2%;
+      
+    }
+
+
 .user-output select {
     margin: 0 auto;
     width: 20%;
@@ -5,5 +12,38 @@
 .data {
     display: flex;
     flex-direction: row;
-    gap: 5%;
+    gap: 10%;
+    padding: 2%;
+    border-bottom: 5px solid grey;
+    margin: auto;
+    margin-bottom: 2%;
+}
+
+.information {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    padding: 2%;
+    text-align: center;
+    border-radius: 30px;
+    border: 0.5px solid RGBA(255,255,255,0.18);
+  
+}
+
+.knapp {
+    margin: auto;
+}
+
+.show {
+    margin: auto;
+}
+
+.selectteacher
+{
+    margin-top: 2%;
+}
+
+.information label {
+    margin-top: 2%;
 }
