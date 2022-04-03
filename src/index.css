@@ -2,5 +2,7 @@
 background: url('./components/Emmi/Blogg/img/space.jpg')
 }
 body {
-    margin: 0 auto;
-}
+    min-height: 100vh;
+    margin-bottom: 10%;
+    clear: both;
+ }
