@@ -94,10 +94,10 @@ function Courses() {
         <select type="text" onClick={getUsers}className="selectteacher" onChange={(event) => {
                               setTeacher(event.target.value);
 
-                            }}>  {usersList.map((val) =>{ return( <option >  {val.fname} {val.lname}
+                            }}>  {usersList.map((val) =>{ return(<><option value="" selected disabled hidden>Choose here</option>  <option >  {val.fname} {val.lname}
 
 
-                            </option> )})}
+                            </option> </>)})}
 
 
        </select>
