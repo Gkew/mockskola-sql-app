@@ -89,6 +89,7 @@ const Adduser = () => {
             setRole(event.target.value);
           }}
         >
+        <option value="" selected disabled hidden>Choose here</option>
         <option value="teacher">Teacher</option>
         <option value="admin">Admin</option>
         </select>
