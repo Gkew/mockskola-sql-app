@@ -2,28 +2,25 @@ import "./Courses.css";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 
+function Courses() {
 
-
-
-function Courses () {
-  
   const [course, setCourse] = useState("");
   const [weeks, setWeeks] = useState(0);
   const [info, setInfo] = useState("");
   const [teacher, setTeacher] = useState("");
   const [coursesList, setCoursesList] = useState([]);
   const [usersList, setUsersList] = useState([]);
-  
+
   const addCourse = () => {
     Axios.post("http://localhost:3001/createCourses", {
-    course: course,
-    teacher: teacher,
-    weeks: weeks,
-    info: info,
+      course: course,
+      teacher: teacher,
+      weeks: weeks,
+      info: info,
     }).then(() => {
       setCoursesList([
         ...coursesList,
-        
+
         {
           course: course,
           teacher: teacher,
@@ -42,15 +39,13 @@ function Courses () {
   const getUsers = () => {
     Axios.get("http://localhost:3001/users").then((response) => {
       setUsersList(response.data);
-      console.log(response.data)
+      console.log(response.data);
     });
   };
 
   return (
     <div className="Courses">
       <div className="information">
-  
-
         <label>Course:</label>
         <input
           type="text"
@@ -65,69 +60,80 @@ function Courses () {
           onChange={(event) => {
             setWeeks(event.target.value);
           }}
-        > 
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
         </select>
-          
+
         <label>Description:</label>
-        <textarea maxLength="500" rows="12" cols="41" required
+        <textarea
+          maxLength="500"
+          rows="12"
+          cols="41"
+          required
           type="text"
           onChange={(event) => {
             setInfo(event.target.value);
           }}
         />
+        
         <label>Teacher:</label>
         <select type="text" onClick={getUsers}className="selectteacher" onChange={(event) => {
                               setTeacher(event.target.value);
-                             
+
                             }}>  {usersList.map((val) =>{ return( <option >  {val.fname} {val.lname}
 
-                            
+
                             </option> )})}
-                            
+
 
        </select>
 
-        <button onClick={addCourse}className="knapp" >Add Course</button>
+        <button onClick={addCourse} className="knapp">
+          Add Course
+        </button>
       </div>
       <div className="courses">
-
-        <button onClick={getCourses}className="show" >Show Courses</button>
+        <button onClick={getCourses} className="show">
+          Show Courses
+        </button>
 
         {coursesList.map((val, key) => {
           return (
             <div className="course">
-
               <div className="data">
-                <h3>Teacher: <p>{val.teacher} </p></h3>
-                <h3>Course: <p>{val.course}</p></h3>
-                <h3>Weeks: <p>{val.weeks}</p></h3>
-                <h3>Description: <p>{val.info}</p></h3>
-
+                <h3>
+                  Teacher: <p>{val.teacher} </p>
+                </h3>
+                <h3>
+                  Course: <p>{val.course}</p>
+                </h3>
+                <h3>
+                  Weeks: <p>{val.weeks}</p>
+                </h3>
+                <h3>
+                  Description: <p>{val.info}</p>
+                </h3>
               </div>
-
             </div>
           );
         })}
       </div>
-   
     </div>
   );
-
 }
 
 export default Courses;
