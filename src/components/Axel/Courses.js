@@ -37,7 +37,10 @@ function Courses() {
   };
   const getUsers = () => {
     Axios.get("http://localhost:3001/users").then((response) => {
-      setUsersList(response.data);
+      
+      setUsersList(response.data.filter((user) => {
+        return user.role == "teacher";
+      }));
       console.log(response.data);
     });
   };
