@@ -10,6 +10,7 @@ function Header() {
       <Link to="/getusers">Find Users</Link>
    
       <Link to="/courses">Courses</Link>
+      <Link to="/commentscourses">Reviews</Link>
       <Link to="/programs">Programs</Link>
       <Link to="/enroll">Apply to Spaceforce</Link>
       <Link to="/blog">Blogg</Link>

@@ -12,6 +12,7 @@ import Enroll from './components/Emmi/Enroll';
 import PageNotFound from './components/Emmi/PageNotFound';
 import Blog from './components/Emmi/Blogg/Blog';
 import Programs from './components/Markus/Programs';
+import Commentcourses from './components/Axel/Commentcourses';
 
 
 ReactDOM.render(
@@ -26,6 +27,7 @@ ReactDOM.render(
     <Route path='/programs' element={<Programs/>} />
     <Route path='/enroll' element={<Enroll/>} />
     <Route path='/blog' element={<Blog/>} />
+    <Route path='/commentscourses' element={<Commentcourses/>} />
     <Route path="*" element={<PageNotFound/>} />
   </Routes>
   <Footer />
