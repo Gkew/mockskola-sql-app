@@ -22,7 +22,6 @@ app.post("/createUser", (req, res) => {
   const email = req.body.email;
   const account = req.body.account;
   const role = req.body.role;
-  
 
   db.query(
     "INSERT INTO users (fname, lname, email, account, role) VALUES (?,?,?,?,?)",
@@ -42,7 +41,6 @@ app.post("/createStudent", (req, res) => {
   const studentEmail = req.body.studentEmail;
   const studentCourse = req.body.studentCourse;
 
-
   db.query(
     "INSERT INTO students (studentFname, studentLname, studentEmail, studentCourse) VALUES (?,?,?,?)",
     [studentFname, studentLname, studentEmail, studentCourse],
@@ -60,7 +58,6 @@ app.post("/createPost", (req, res) => {
   const publisher = req.body.publisher;
   const post = req.body.post;
   const tags = req.body.tags;
-
 
   db.query(
     "INSERT INTO posts (title, publisher,  post, tags) VALUES (?,?,?,?)",
@@ -83,9 +80,15 @@ app.get("/users", (req, res) => {
     }
   });
 });
-
-
-
+app.get("/students", (req, res) => {
+  db.query("SELECT * FROM students", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
 app.get("/posts", (req, res) => {
   db.query("SELECT * FROM posts", (err, result) => {
@@ -108,7 +111,6 @@ app.delete("/delete/:id", (req, res) => {
   });
 });
 
-
 app.put("/update", (req, res) => {
   const id = req.body.id;
   const fname = req.body.fname;
@@ -130,8 +132,6 @@ app.put("/update", (req, res) => {
   );
 });
 
-
-
 app.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
   db.query("DELETE FROM users WHERE id = ?", id, (err, result) => {
@@ -142,17 +142,22 @@ app.delete("/delete/:id", (req, res) => {
     }
   });
 });
-
-
-
-
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM students WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //AXEL
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.post("/createCourses", (req, res) => {
-
   const course = req.body.course;
   const teacher = req.body.teacher;
   const weeks = req.body.weeks;
@@ -171,7 +176,6 @@ app.post("/createCourses", (req, res) => {
   );
 });
 
-
 app.get("/courses", (req, res) => {
   db.query("SELECT * FROM courses", (err, result) => {
     if (err) {
@@ -182,13 +186,22 @@ app.get("/courses", (req, res) => {
   });
 });
 
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM courses WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //MARKUS
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.post("/createPrograms", (req, res) => {
-
   const program = req.body.program;
   const description = req.body.description;
   const courses = req.body.courses;
@@ -207,7 +220,6 @@ app.post("/createPrograms", (req, res) => {
   );
 });
 
-
 app.get("/programs", (req, res) => {
   db.query("SELECT * FROM programs", (err, result) => {
     if (err) {
@@ -217,10 +229,6 @@ app.get("/programs", (req, res) => {
     }
   });
 });
-
-
-
-
 
 app.listen(3001, () => {
   console.log("Server is running on port 3001");

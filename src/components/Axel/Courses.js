@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 function Courses() {
-
   const [course, setCourse] = useState("");
   const [weeks, setWeeks] = useState(0);
   const [info, setInfo] = useState("");
@@ -40,6 +39,15 @@ function Courses() {
     Axios.get("http://localhost:3001/users").then((response) => {
       setUsersList(response.data);
       console.log(response.data);
+    });
+  };
+  const deletekurs = (id) => {
+    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+      setCoursesList(
+        coursesList.filter((val) => {
+          return val.id !== id;
+        })
+      );
     });
   };
 
@@ -89,18 +97,31 @@ function Courses() {
             setInfo(event.target.value);
           }}
         />
-        
+
         <label>Teacher:</label>
-        <select type="text" onClick={getUsers}className="selectteacher" onChange={(event) => {
-                              setTeacher(event.target.value);
-
-                            }}>  {usersList.map((val) =>{ return(<><option value="" selected disabled hidden>Choose here</option>  <option >  {val.fname} {val.lname}
-
-
-                            </option> </>)})}
-
-
-       </select>
+        <select
+          type="text"
+          onClick={getUsers}
+          className="selectteacher"
+          onChange={(event) => {
+            setTeacher(event.target.value);
+          }}
+        >
+          {" "}
+          {usersList.map((val) => {
+            return (
+              <>
+                <option value="" selected disabled hidden>
+                  Choose here
+                </option>{" "}
+                <option>
+                  {" "}
+                  {val.fname} {val.lname}
+                </option>{" "}
+              </>
+            );
+          })}
+        </select>
 
         <button onClick={addCourse} className="knapp">
           Add Course
@@ -128,6 +149,14 @@ function Courses() {
                   Description: <p>{val.info}</p>
                 </h3>
               </div>
+              <button
+                className="delBtn"
+                onClick={() => {
+                  deletekurs(val.id);
+                }}
+              >
+                Delete
+              </button>
             </div>
           );
         })}

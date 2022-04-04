@@ -7,7 +7,7 @@ function App() {
   
   return (
     <div className="App">
-    <h1>Starfleet Crew</h1>
+    <h1 className='home-title'><i>Starfleet Crew</i></h1>
     <div className='crew'>
     <div><img src={Piccard} style={{width: '300px'}} alt="Piccard"/></div>
     <div><img src={Spock} style={{width: '300px', height: '229px'}} alt="Spock"/></div>

@@ -1,17 +1,17 @@
 import emailjs from "emailjs-com";
 import React, { useState } from "react";
 import "./Enroll.css";
+import GetEnroll from "./GetEnroll";
 import Axios from "axios";
-import coursesList from "../Axel/Courses";
 
 export default function Apply() {
   const [studentFname, setstudentFname] = useState("");
   const [studentLname, setstudentLname] = useState("");
   const [studentEmail, setstudentEmail] = useState("");
-  const [studentCourse, setstudentCourse] = useState("");
+  const [studentProgram, setstudentProgram] = useState("");
   const [studentsList, setstudentsList] = useState([]);
 
-  const [coursesList, setCoursesList] = useState([]);
+  const [programsList, setProgramsList] = useState([]);
 
   function Apply(e) {
     e.preventDefault();
@@ -38,7 +38,7 @@ export default function Apply() {
       studentFname: studentFname,
       studentLname: studentLname,
       studentEmail: studentEmail,
-      studentCourse: studentCourse,
+      studentProgram: studentProgram,
     }).then(() => {
       setstudentsList([
         ...studentsList,
@@ -47,14 +47,14 @@ export default function Apply() {
           studentFname: studentFname,
           studentLname: studentLname,
           studentEmail: studentEmail,
-          studentCourse: studentCourse,
+          studentProgram: studentProgram,
         },
       ]);
     });
   };
-  const getCourses = () => {
-    Axios.get("http://localhost:3001/courses").then((response) => {
-      setCoursesList(response.data);
+  const getPrograms = () => {
+    Axios.get("http://localhost:3001/programs").then((response) => {
+      setProgramsList(response.data);
     });
   };
 
@@ -90,22 +90,22 @@ export default function Apply() {
         <label>Select your program:</label>
         <select
           type="text"
-          name="course"
-          onClick={getCourses}
+          name="program"
+          onClick={getPrograms}
           onChange={(event) => {
-            setstudentCourse(event.target.value);
+            setstudentProgram(event.target.value);
           }}
         >
           {" "}
-          {coursesList.map((val) => {
-            return <option>{val.course}</option>;
+          {programsList.map((val) => {
+            return <option>{val.program}</option>;
           })}
         </select>
-
         <button type="submit" value="Send Message" onClick={addStudent}>
           Apply
         </button>
       </form>
+      <GetEnroll />
     </div>
   );
 }

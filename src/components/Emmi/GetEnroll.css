@@ -1,0 +1,28 @@
+.Main-getenroll{
+    margin: 0 auto;
+}
+.ApplyList {
+    margin: 0 auto;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 60%;
+    gap: 15%;
+}
+.ApplyList button {
+    width: 60px;
+    align-self: flex-end;
+    margin-right: 0;
+    height: 30px;
+}
+.delApply {
+   position: absolute;
+   right: 200px;
+}
+.getApplyBtn {
+    margin: 0 auto;
+    width: 140px;
+    height: 40px;
+    margin-bottom: 2%;
+}

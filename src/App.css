@@ -3,6 +3,11 @@
   text-align: center;
   color: white;
 }
+.home-title {
+  font-family: 'Poller One', cursive;
+  text-transform: uppercase;
+  font-size: 40px;
+}
 
 .crew {
   margin: auto;

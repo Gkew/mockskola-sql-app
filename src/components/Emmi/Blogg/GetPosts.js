@@ -23,7 +23,8 @@ const GetPosts = () => {
   
   return (
     <div className="Posts">
-      <div className="getPosts"><button onClick={getPosts}>Open the blog</button></div>
+      <div className="getPosts">
+      <button onClick={getPosts}>Open the blog</button></div>
       {postsList.map((val, key) => {
         return (
           <div className="Blog-posts">
