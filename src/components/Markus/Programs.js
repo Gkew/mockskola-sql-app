@@ -1,7 +1,7 @@
 import "./Programs.css";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-
+import Select from 'react-select'
 
 function Programs() {
 
@@ -12,8 +12,6 @@ function Programs() {
   const [programsList, setProgramsList] = useState([]);
   const [usersList, setUsersList] = useState([]);
   const [coursesList, setCoursesList] = useState([]);
- 
-
 
   const addProgram = () => {
     Axios.post("http://localhost:3001/createPrograms", {
@@ -78,17 +76,16 @@ function Programs() {
 
 </select>
 <label>Courses:</label>
-<select type="text" onClick={getCourses} onChange={(event) => {
+<select style={{height: "200px"}} type="text" onClick={getCourses} onChange={(event) => {
   setCourses(event.target.value);
 }}>  {coursesList.map((val) =>{ return( <option >{val.course}</option> )})}
-
 </select>
 
-        <button onClick={addProgram}>Add Course</button>
+        <button onClick={addProgram}>Add Program</button>
       </div>
       <div className="courses">
 
-        <button onClick={getPrograms}>Show Courses</button>
+        <button onClick={getPrograms}>Show Programs</button>
 
         {programsList.map((val, key) => {
           return (
