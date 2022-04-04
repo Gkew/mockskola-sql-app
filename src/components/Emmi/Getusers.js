@@ -10,7 +10,6 @@ function Getusers() {
   const [newemail, setNewemail] = useState(0);
   const [newaccount, setNewaccount] = useState(0);
   const [newrole, setNewrole] = useState(0);
-
   const [usersList, setUsersList] = useState([]);
 
 
