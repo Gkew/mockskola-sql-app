@@ -43,7 +43,7 @@ function Getusers() {
       };
       
       const deleteUser = (id) => {
-        Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+        Axios.delete(`http://localhost:3001/deleteusers/${id}`).then((response) => {
           setUsersList(
             usersList.filter((val) => {
               return val.id !== id;

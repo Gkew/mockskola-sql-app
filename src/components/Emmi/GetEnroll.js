@@ -11,7 +11,7 @@ function GetEnroll() {
         });
     };
     const deleteApplication = (id) => {
-        Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+        Axios.delete(`http://localhost:3001/deletestudents/${id}`).then((response) => {
           setApplysList(
             applysList.filter((val) => {
               return val.id !== id;

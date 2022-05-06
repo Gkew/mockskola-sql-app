@@ -100,16 +100,6 @@ app.get("/posts", (req, res) => {
   });
 });
 
-app.delete("/delete/:id", (req, res) => {
-  const id = req.params.id;
-  db.query("DELETE FROM posts WHERE id = ?", id, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
 
 app.put("/update", (req, res) => {
   const id = req.body.id;
@@ -131,8 +121,18 @@ app.put("/update", (req, res) => {
     }
   );
 });
+app.delete("/deleteposts/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM posts WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
-app.delete("/delete/:id", (req, res) => {
+app.delete("/deleteusers/:id", (req, res) => {
   const id = req.params.id;
   db.query("DELETE FROM users WHERE id = ?", id, (err, result) => {
     if (err) {
@@ -142,7 +142,7 @@ app.delete("/delete/:id", (req, res) => {
     }
   });
 });
-app.delete("/delete/:id", (req, res) => {
+app.delete("/deletestudents/:id", (req, res) => {
   const id = req.params.id;
   db.query("DELETE FROM students WHERE id = ?", id, (err, result) => {
     if (err) {
@@ -186,9 +186,19 @@ app.get("/courses", (req, res) => {
   });
 });
 
-app.delete("/delete/:id", (req, res) => {
+app.delete("/deletecourses/:id", (req, res) => {
   const id = req.params.id;
   db.query("DELETE FROM courses WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+app.delete("/deletecomments/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM comments WHERE id = ?", id, (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -200,7 +210,7 @@ app.delete("/delete/:id", (req, res) => {
 app.post("/createcomments", (req, res) => {
   const flname = req.body.flname;
   const ccourse = req.body.ccourse; 
-  const comment = req.body. comment; 
+  const comment = req.body.comment; 
 
   db.query(
     "INSERT INTO comments (flname, ccourse, comment) VALUES (?,?,?)",
