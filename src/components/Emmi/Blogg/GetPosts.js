@@ -11,7 +11,7 @@ const GetPosts = () => {
   };
 
   const deletePost = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+    Axios.delete(`http://localhost:3001/deleteposts/${id}`).then((response) => {
       setPostsList(
         postsList.filter((val) => {
           return val.id !== id;
