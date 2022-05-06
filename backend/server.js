@@ -199,8 +199,8 @@ app.delete("/delete/:id", (req, res) => {
 
 app.post("/createcomments", (req, res) => {
   const flname = req.body.flname;
-  const ccourse = req.body.ccourse; 
-  const comment = req.body. comment; 
+  const ccourse = req.body.ccourse;
+  const comment = req.body.comment;
 
   db.query(
     "INSERT INTO comments (flname, ccourse, comment) VALUES (?,?,?)",
@@ -224,7 +224,6 @@ app.get("/comments", (req, res) => {
     }
   });
 });
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //MARKUS
