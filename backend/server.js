@@ -195,16 +195,6 @@ app.delete("/deletecourses/:id", (req, res) => {
     }
   });
 });
-app.delete("/deletecomments/:id", (req, res) => {
-  const id = req.params.id;
-  db.query("DELETE FROM comments WHERE id = ?", id, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
 
 app.post("/createcomments", (req, res) => {
   const flname = req.body.flname;
@@ -233,7 +223,54 @@ app.get("/comments", (req, res) => {
     }
   });
 });
+app.delete("/deletecomment/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM comments WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
+app.put("/updateCourses", (req, res) => {
+  const id = req.body.id;
+  const course = req.body.course;
+  const teacher = req.body.teacher;
+  const weeks = req.body.weeks;
+  const info = req.body.info;
+  db.query(
+    "UPDATE courses SET course=?, teacher=?, weeks=?, info=?  WHERE id = ?",
+    [course, teacher, weeks, info, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.put("/updateComment", (req, res) => {
+  const id = req.body.id;
+  const flname = req.body.flname;
+  const ccourse = req.body.ccourse;
+  const comment = req.body.comment;
+
+  db.query(
+    "UPDATE comments SET flname=?, ccourse=?, comment=?  WHERE id = ?",
+    [flname, ccourse, comment, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //MARKUS
 ////////////////////////////////////////////////////////////////////////////////////////////////
