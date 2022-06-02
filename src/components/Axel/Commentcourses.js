@@ -3,6 +3,9 @@ import { useState } from "react";
 import Axios from "axios";
 
 function Commentcourses() {
+  const [newflname, setNewflname] = useState(0);
+  const [newccourse, setNewccourse] = useState(0);
+  const [newcomment, setNewcomment] = useState(0);
   const [flname, setFlname] = useState("");
   const [ccourse, setCcourse] = useState("");
   const [comment, setComment] = useState("");
@@ -37,17 +40,39 @@ function Commentcourses() {
       setCommentsList(response.data);
     });
   };
-
   const deleteComment = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+    Axios.delete(`http://localhost:3001/deletecomment/${id}`).then(
+      (response) => {
+        setCommentsList(
+          commentsList.filter((val) => {
+            return val.id !== id;
+          })
+        );
+      }
+    );
+  };
+
+  const updateComment = (id) => {
+    Axios.put("http://localhost:3001/updateComment", {
+      flname: newflname,
+      ccourse: newccourse,
+      comment: newcomment,
+      id: id,
+    }).then((response) => {
       setCommentsList(
-        commentsList.filter((val) => {
-          return val.id !== id;
+        commentsList.map((val) => {
+          return val.id === id
+            ? {
+                id: val.id,
+                flname: newflname,
+                ccourse: newccourse,
+                comment: newcomment,
+              }
+            : val;
         })
       );
     });
   };
-
   return (
     <div className="maincomment">
       <div className="commentform">
@@ -76,14 +101,16 @@ function Commentcourses() {
             );
           })}
         </select>
+
         <label>Review</label>
         <textarea
           onChange={(event) => {
             setComment(event.target.value);
           }}
         />
-        <button onClick={addComment}>add blabla</button>
+        <button onClick={addComment}>Submit</button>
       </div>
+
       <button onClick={getComments}>Show comments</button>
 
       {commentsList.map((val, key) => {
@@ -103,6 +130,38 @@ function Commentcourses() {
             >
               Delete
             </button>
+
+            <div className="Edits">
+              <input
+                type="text"
+                placeholder="Name"
+                onChange={(event) => {
+                  setNewflname(event.target.value);
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Course"
+                onChange={(event) => {
+                  setNewccourse(event.target.value);
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Comment"
+                onChange={(event) => {
+                  setNewcomment(event.target.value);
+                }}
+              />
+              <button
+                className="editBtn"
+                onClick={() => {
+                  updateComment(val.id);
+                }}
+              >
+                Update
+              </button>
+            </div>
           </div>
         );
       })}

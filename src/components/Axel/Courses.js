@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 function Courses() {
+  const [newcourse, setNewcourse] = useState(0);
+  const [newteacher, setNewteacher] = useState(0);
+  const [newweeks, setNewweeks] = useState(0);
+  const [newinfo, setNewinfo] = useState(0);
   const [course, setCourse] = useState("");
   const [weeks, setWeeks] = useState(0);
   const [info, setInfo] = useState("");
@@ -37,18 +41,45 @@ function Courses() {
   };
   const getUsers = () => {
     Axios.get("http://localhost:3001/users").then((response) => {
-      
-      setUsersList(response.data.filter((user) => {
-        return user.role == "teacher";
-      }));
+      setUsersList(
+        response.data.filter((user) => {
+          return user.role == "teacher";
+        })
+      );
       console.log(response.data);
     });
   };
   const deletekurs = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+    Axios.delete(`http://localhost:3001/deletecourses/${id}`).then(
+      (response) => {
+        setCoursesList(
+          coursesList.filter((val) => {
+            return val.id !== id;
+          })
+        );
+      }
+    );
+  };
+
+  const updateCourses = (id) => {
+    Axios.put("http://localhost:3001/updateCourses", {
+      course: newcourse,
+      teacher: newteacher,
+      weeks: newweeks,
+      info: newinfo,
+      id: id,
+    }).then((response) => {
       setCoursesList(
-        coursesList.filter((val) => {
-          return val.id !== id;
+        coursesList.map((val) => {
+          return val.id === id
+            ? {
+                id: val.id,
+                course: newcourse,
+                teacher: newteacher,
+                weeks: newweeks,
+                info: newinfo,
+              }
+            : val;
         })
       );
     });
@@ -151,15 +182,86 @@ function Courses() {
                 <h3>
                   Description: <p>{val.info}</p>
                 </h3>
+                <button
+                  className="delBtn"
+                  onClick={() => {
+                    deletekurs(val.id);
+                  }}
+                >
+                  Delete
+                </button>
+                <div>
+                  <select
+                    type="text"
+                    onClick={getUsers}
+                    className="selectteacher"
+                    onChange={(event) => {
+                      setNewteacher(event.target.value);
+                    }}
+                  >
+                    {" "}
+                    {usersList.map((val) => {
+                      return (
+                        <>
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>{" "}
+                          <option>
+                            {" "}
+                            {val.fname} {val.lname}
+                          </option>{" "}
+                        </>
+                      );
+                    })}
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="Course"
+                    onChange={(event) => {
+                      setNewcourse(event.target.value);
+                    }}
+                  />
+                  <select
+                    type="text"
+                    placeholder="Comment"
+                    onChange={(event) => {
+                      setNewweeks(event.target.value);
+                    }}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+
+                  <textarea
+                    type="text"
+                    placeholder="Comment"
+                    onChange={(event) => {
+                      setNewinfo(event.target.value);
+                    }}
+                  />
+                  <button
+                    className="editBtn"
+                    onClick={() => {
+                      updateCourses(val.id);
+                    }}
+                  >
+                    Update
+                  </button>
+                </div>
               </div>
-              <button
-                className="delBtn"
-                onClick={() => {
-                  deletekurs(val.id);
-                }}
-              >
-                Delete
-              </button>
             </div>
           );
         })}
