@@ -267,6 +267,37 @@ app.get("/programs", (req, res) => {
   });
 });
 
+app.delete("/deleteprogram/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM programs WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.put("/updateprogram", (req, res) => {
+  const id = req.body.id;
+  const program = req.body.program;
+  const description = req.body.description;
+  const courses = req.body.courses;
+  const admin = req.body.admin;
+
+  db.query(
+    "UPDATE programs SET program = ?, description = ?, courses = ?, admin = ? WHERE id = ?",
+    [program, description, courses, admin, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
