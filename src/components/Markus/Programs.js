@@ -49,6 +49,43 @@ function Programs() {
     });
   };
 
+        const deleteProgram = (id) => {
+        Axios.delete(`http://localhost:3001/deleteprogram/${id}`).then((response) => {
+          setProgramsList(
+            programsList.filter((val) => {
+              return val.id !== id;
+            })
+          );
+        });
+  };
+
+  const [newprogram, setNewprogram] = useState(0);
+  const [newdescription, setNewdescription] = useState(0);
+  const [newcourses, setNewcourses] = useState(0);
+  const [newadmin, setNewadmin] = useState(0);
+  
+  const updateProgram = (id) => {
+        Axios.put("http://localhost:3001/updateprogram", { program: newprogram, description: newdescription, courses: newcourses, admin: newadmin, id: id }).then(
+          (response) => {
+            setProgramsList(
+              programsList.map((val) => {
+                return val.id === id
+                  ? {
+                      id: val.id,
+                      program: newprogram,
+                      description: newdescription,
+                      courses: newcourses,
+                      admin: newadmin,
+                      
+                    }
+                    
+                  : val;
+              })
+            );
+          }
+        );
+      };
+
   return (
     <div className="Programs">
       <div className="information">
@@ -98,6 +135,51 @@ function Programs() {
                 <h3>Course: <p>{val.courses}</p></h3>
 
               </div>
+
+              <button
+                className="delBtn"
+                onClick={() => {
+                  deleteProgram(val.id);
+                }}
+              >
+                Delete
+              </button>
+
+              <div>
+              <input
+              type="text"
+              placeholder="Program"
+              onChange={(event) => {
+                setNewprogram(event.target.value);
+              }}/>
+              <textarea
+              type="text"
+              placeholder="Description"
+              onChange={(event) => {
+                setNewdescription(event.target.value);
+              }}/>
+              <input
+              type="text"
+              placeholder="Courses"
+              onChange={(event) => {
+                setNewcourses(event.target.value);
+              }}/>
+              <input
+              type="text"
+              placeholder="Admin"
+              onChange={(event) => {
+                setNewadmin(event.target.value);
+              }}/>
+              </div>
+
+              <button
+                className="updateBtn"
+                onClick={() => {
+                  updateProgram(val.id);
+                }}
+              >
+                Update
+              </button>
 
             </div>
           );
